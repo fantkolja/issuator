@@ -7,7 +7,7 @@ const port: number = Number(process.env.API_PORT);
 const server: ApiServer = new ApiServer(port);
 
 // TODO: move static files path to config
-const staticRoot = join(__dirname, '../frontend/build');
+const staticRoot = join(__dirname, '../frontend/dist');
 const staticMiddleware: express.Handler = express.static(`${staticRoot}`);
 
 // app.use(logger('dev'));
