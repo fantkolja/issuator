@@ -1,20 +1,19 @@
 import { ApiServer } from './api/server';
-import { TimetableController } from './api/controllers/TimetableController';
+// import { TimetableController } from './api/controllers/TimetableController';
 import { join } from 'path';
 import * as express from 'express';
-import { timetableScrapper } from './services/scrapper';
-import { htmlParser } from './services/html-parser';
 
 const port: number = Number(process.env.API_PORT);
 const server: ApiServer = new ApiServer(port);
 
 // TODO: move static files path to config
-const staticRoot = join(__dirname, '../frontend/build');
+const staticRoot = join(__dirname, '../frontend/dist');
 const staticMiddleware: express.Handler = express.static(`${staticRoot}`);
 
 // app.use(logger('dev'));
 // TODO: INTERCEPT all /api calls
-server.addControllers([TimetableController]);
+// server.addControllers([TimetableController]);
+server.addControllers([]);
 server.addMiddleware(staticMiddleware);
 server.get('/*', (req, res) => {
   res.status(200).sendFile(`${staticRoot}/index.html`);
@@ -35,12 +34,8 @@ server.get('/*', (req, res) => {
 //   }
 server.start();
 
-// timetableScrapper.getTeachers();
-// timetableScrapper.getTeacher('Фант');
-async function test(): Promise<void> {
-  const html = await timetableScrapper.getTimeTable();
-  const timetable = htmlParser.parseChosenPeriod(html.toString());
-  console.log(timetable);
-}
-
-test();
+// async function test(): Promise<void> {
+//   console.log('test');
+// }
+//
+// test();

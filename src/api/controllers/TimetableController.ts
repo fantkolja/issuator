@@ -1,8 +1,6 @@
 import { Controller } from './controller.model';
 import { Router, Request, Response, NextFunction } from 'express';
 import { HttpServer } from '../server/httpServer.model';
-import { timetableScrapper } from '../../services/scrapper';
-import { htmlParser } from '../../services/html-parser';
 
 // @Controller('/timetable') -> adds constructor, with this.router, and this.app
 export class TimetableController implements Controller {
