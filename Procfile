@@ -1,1 +1,0 @@
-web: node ./node_modules/ts-node/dist/bin src/index.ts
