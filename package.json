@@ -2,10 +2,13 @@
   "name": "issuator",
   "version": "0.0.0",
   "description": "Portal for managing project issues",
+  "engines": {
+    "node": "10.x"
+  },
   "main": "src/index.ts",
   "scripts": {
-    "dev": "set NODE_ENV=development&& nodemon -r ts-node/register",
-    "dev:debug": "set NODE_ENV=development&& nodemon --inspect-brk -r ts-node/register",
+    "start": "set NODE_ENV=development&& nodemon -r ts-node/register",
+    "start:debug": "set NODE_ENV=development&& nodemon --inspect-brk -r ts-node/register",
     "build": "set NODE_ENV=production",
     "test": "set NODE_ENV=testing&& jest --noStackTrace",
     "lint": "tslint -p ./"
