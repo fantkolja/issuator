@@ -7,7 +7,7 @@
   },
   "main": "src/index.ts",
   "scripts": {
-    "start": "node ./node_modules/ts-node/dist/bin src/index.ts",
+    "start": "ts-node src/index.ts",
     "dev": "set NODE_ENV=development&& nodemon -r ts-node/register",
     "dev:debug": "set NODE_ENV=development&& nodemon --inspect-brk -r ts-node/register",
     "build": "set NODE_ENV=production",
