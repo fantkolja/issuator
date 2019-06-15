@@ -3,15 +3,17 @@
   "version": "0.0.0",
   "description": "Portal for managing project issues",
   "engines": {
-    "node": "10.x"
+    "node": "12.x",
+    "npm": "6.x"
   },
-  "main": "src/index.ts",
+  "main": "dist/src/index.js",
   "scripts": {
-    "start": "ts-node ./src/index.ts",
     "dev": "cross-env NODE_ENV=development nodemon -r ts-node/register",
     "dev:debug": "cross-env NODE_ENV=development nodemon --inspect-brk -r ts-node/register",
+    "clean:dist": "rimraf dist/**/*",
     "compile": "tsc",
-    "build": "cross-env NODE_ENV=production",
+    "build": "cross-env NODE_ENV=production npm run clean:dist && npm run compile",
+    "start": "node ./dist/src",
     "test": "cross-env NODE_ENV=testing jest --noStackTrace",
     "lint": "tslint -p ./"
   },

@@ -17,10 +17,8 @@ export class TimetableController implements Controller {
   }
   // @Get('/') -> this.router.get()
   private async getTimetable(req: Request, res: Response, next: NextFunction): Promise<void> {
-    const html = await timetableScrapper.getTimeTable();
-    const timetable = htmlParser.parseChosenPeriod(html.toString());
     res.status(200).json({
-      timetable,
+      timetable: 'timetable',
       message: 'Here is your timetable :)',
     });
   }

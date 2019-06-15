@@ -1,26 +1,30 @@
 {
 	"compilerOptions": {
-		"target": "es6",
+		"target": "es2015",
 		"module": "commonjs",
+		"moduleResolution": "node",
 		"pretty": true,
 		"sourceMap": true,
 		"outDir": "dist",
 		"importHelpers": true,
 		"strict": true,
-		"noImplicitAny": false,
-		"strictNullChecks": false,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
 		"noImplicitThis": true,
 		"alwaysStrict": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": false,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
-		"moduleResolution": "node",
-		"baseUrl": ".",
+		"baseUrl": "./",
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"types": [
 			"node"
 		]
-  }
+  },
+  "exclude": [
+	  "frontend",
+	  "test"
+  ]
 }
