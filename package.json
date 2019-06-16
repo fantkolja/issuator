@@ -12,8 +12,9 @@
     "dev:debug": "cross-env NODE_ENV=development nodemon --inspect-brk -r ts-node/register",
     "clean:dist": "rimraf dist/**/*",
     "compile": "tsc",
+    "build:frontend": "cd frontend && ng build",
     "build": "cross-env NODE_ENV=production npm run clean:dist && npm run compile",
-    "start": "node ./dist/src",
+    "start": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 ./dist/src",
     "test": "cross-env NODE_ENV=testing jest --noStackTrace",
     "lint": "tslint -p ./"
   },

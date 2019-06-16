@@ -4,11 +4,11 @@ import { join } from 'path';
 import * as express from 'express';
 
 // todo: add default port???
-const port: number = Number(process.env.API_PORT || 5000);
+const port: number = Number(process.env.PORT || 5000);
 const server: ApiServer = new ApiServer(port);
 
 // TODO: move static files path to config
-const staticRoot = join(__dirname, '../frontend/dist');
+const staticRoot = join(__dirname, '../../frontend/dist');
 const staticMiddleware: express.Handler = express.static(`${staticRoot}`);
 
 // app.use(logger('dev'));

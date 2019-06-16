@@ -1,7 +1,6 @@
 import * as request from 'supertest';
 
 import { ApiServer } from '../../../src/api/server/index';
-import { DictionaryController } from '../../../src/api/controllers/DictionaryController';
 import { Server } from 'http';
 
 describe('API Server', () => {
@@ -10,10 +9,10 @@ describe('API Server', () => {
 
   beforeAll(() => {
     // TODO: load with dotenv
-    // port = Number(process.env.API_TEST_PORT);
+    // port = Number(process.env.TEST_PORT);
     port = Number(5001);
     const api = new ApiServer(port);
-    api.addControllers([DictionaryController]);
+    api.addControllers([]);
     server = api.start();
   });
 
