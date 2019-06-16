@@ -16,6 +16,11 @@ const staticMiddleware: express.Handler = express.static(`${staticRoot}`);
 // server.addControllers([TimetableController]);
 server.addControllers([]);
 server.addMiddleware(staticMiddleware);
+server.get('/', (req, res) => {
+  res.status(200).json({
+    'version': '0.0.1',
+  });
+});
 server.get('/*', (req, res) => {
   res.status(200).sendFile(`${staticRoot}/index.html`);
 });
