@@ -1,7 +1,5 @@
 import { ApiServer } from './api/server';
 // import { TimetableController } from './api/controllers/TimetableController';
-import { join } from 'path';
-import * as express from 'express';
 
 // todo: add default port???
 const port: number = Number(process.env.PORT || 5000);
