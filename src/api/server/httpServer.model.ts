@@ -5,5 +5,5 @@ export interface HttpServer {
   get(url: string, requestHandler: RequestHandler): void;
   addRouter(url: string, router: Router): void;
   addMiddleware(middleware: RequestHandler): void;
-  start(): Server;
+  start(): Promise<Server>;
 }
