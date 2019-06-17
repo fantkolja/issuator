@@ -13,6 +13,11 @@ describe('API Server', () => {
     port = Number(5001);
     const api = new ApiServer(port);
     api.addControllers([]);
+    api.get('/', (req, res) => {
+      res.status(200).json({
+        version: '0.0.1',
+      });
+    });
     server = await api.start();
     console.log('beforeAll');
     done();
@@ -20,15 +25,14 @@ describe('API Server', () => {
 
   afterAll(() => server.close());
 
-  test(`should be running on url from environment`, async (done) => {
+  it(`should be running on url from environment`, async (done) => {
     const response = await request(`${'http://localhost'}:${port}`)
       .get('/')
       .set('Accept', 'application/json')
       .expect(200);
-    console.log(response);
     expect(response).toBeTruthy();
     expect(response.body).toBeTruthy();
-    expect(typeof response.body.message).toBe('string');
+    expect(typeof response.body.version).toBe('string');
     done();
   });
 });
