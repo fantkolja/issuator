@@ -41,7 +41,12 @@ export class ApiServer implements HttpServer {
     });
   }
 
-  public start(): Server {
-    return this.app.listen(this.port, () => console.log(`API server is listening on ${this.port} port`));
+  public start(): Promise<Server> {
+    return new Promise((res) => {
+      const server: Server = this.app.listen(this.port, () => {
+        console.log(`API server is listening on ${this.port} port`);
+        res(server);
+      });
+    });
   }
 }
