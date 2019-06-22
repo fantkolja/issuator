@@ -9,7 +9,7 @@ function setAccessControlHeaders(res: express.Response): void {
   res.set('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
 }
 
-export class ApiServer implements HttpServer {
+export class ApiServer implements HttpServer23 {
   private static setHeadersMiddleware(req: express.Request, res: express.Response, next: express.NextFunction): void {
     setAccessControlHeaders(res);
     next();
