@@ -1,8 +1,7 @@
 import { HttpServer } from '../server/httpServer.model';
 
 export interface Controller {
+  [name: string]: any;
 }
 
-export interface ControllerConstructor {
-  new (server: HttpServer): Controller;
-}
+export type ControllerConstructor = new (server: HttpServer) => Controller;
