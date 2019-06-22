@@ -10,7 +10,7 @@ cache:
   - node_modules
   - frontend/node_modules
 install:
-  - cd frontend && npm ci
+  - cd frontend && npm ci && cd ../
   - npm ci
 script:
   - npm run lint
