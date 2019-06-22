@@ -12,12 +12,13 @@
     "dev:debug": "cross-env NODE_ENV=development nodemon --inspect-brk -r ts-node/register",
     "clean:dist": "rimraf dist/**/*",
     "compile": "tsc",
-    "build:frontend": "cd frontend && ng build",
     "build": "cross-env NODE_ENV=production npm run clean:dist && npm run compile",
     "start": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 ./dist/src",
     "test": "cross-env NODE_ENV=testing jest --noStackTrace",
     "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
-    "lint": "tslint -p ./"
+    "lint:frontend": "cd frontend && node ./node_modules/@angular/cli/bin/ng lint",
+    "lint:backend": "tslint -p ./tsconfig.json -c ./tslint.json",
+    "lint": "npm run lint:backend && npm run lint:frontend"
   },
   "pre-commit": "lint",
   "repository": {
