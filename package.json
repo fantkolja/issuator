@@ -14,8 +14,9 @@
     "compile": "tsc",
     "build": "cross-env NODE_ENV=production npm run clean:dist && npm run compile",
     "start": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 ./dist/src",
-    "test": "cross-env NODE_ENV=testing jest --noStackTrace",
     "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "test:frontend": "cd frontend && node ./node_modules/@angular/cli/bin/ng test && cd ../",
+    "test": "cross-env NODE_ENV=testing npm run coveralls && npm run test:frontend",
     "lint:frontend": "cd frontend && node ./node_modules/@angular/cli/bin/ng lint && cd ../",
     "lint:backend": "tslint -p ./tsconfig.json -c ./tslint.json",
     "lint": "npm run lint:backend && npm run lint:frontend"
