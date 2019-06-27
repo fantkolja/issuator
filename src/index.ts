@@ -1,3 +1,4 @@
+import { Server } from 'http';
 import { ApiServer } from './api/server';
 import { Database } from './api/db/database.model';
 import { MongooseDBProvider } from './api/db/mongoose-db-provider';
@@ -12,9 +13,7 @@ async function connectDB(host: string) {
   return db;
 }
 
-async function launchAPIServer() {
-  // todo: add default port???
-  const port: number = Number(process.env.PORT || 5000);
+async function launchAPIServer(port: number = 5000): Promise<Server> {
   const server: ApiServer = new ApiServer(port);
 
 // app.use(logger('dev'));
@@ -47,15 +46,26 @@ async function launchAPIServer() {
 //    res.status(500)
 //    res.render('error', { error: err })
 //   }
-  server.start();
-
+  return server.start();
 }
 
-async function main() {
-  await connectDB('mongodb://issuemaster:1105InFa@ds341847.mlab.com:41847/issuator');
-  launchAPIServer();
+interface MainConfig {
+  dbHost: string;
+  port: string;
 }
 
-console.log('process.env.PORT', process.env.PORT);
+async function main({ dbHost, port }: MainConfig) {
+  await connectDB(dbHost);
+  launchAPIServer(Number(port));
+}
 
-main();
+// @todo: check types?
+if (process.env.DB_HOST && process.env.PORT) {
+  main({
+    dbHost: process.env.DB_HOST,
+    port: process.env.PORT,
+  });
+} else {
+  console.error('process.env is not properly set. Shutting down...');
+  process.exit(1);
+}
