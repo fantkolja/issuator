@@ -1,6 +1,6 @@
 import * as request from 'supertest';
 
-import { ApiServer } from '../../../src/api/server/index';
+import { ApiServer } from '../../../src/api/server';
 import { Server } from 'http';
 
 describe('API Server', () => {
@@ -25,7 +25,7 @@ describe('API Server', () => {
 
   afterAll(() => server.close());
 
-  it(`should be running on url from environment`, async (done) => {
+  it('should be running on url from environment', async (done) => {
     const response = await request(`${'http://localhost'}:${port}`)
       .get('/')
       .set('Accept', 'application/json')
