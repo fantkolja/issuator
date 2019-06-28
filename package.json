@@ -9,7 +9,7 @@
   "main": "dist/src/index.js",
   "scripts": {
     "dev": "nodemon -r ts-node/register -r dotenv/config ./src dotenv_config_path=./environments/.env",
-    "dev:debug": "nodemon --inspect-brk -r ts-node/register -r dotenv/config ./src dotenv_config_path=./environments/.env",
+    "dev:debug": "nodemon --inspect-brk -r ts-node/register -r dotenv/config ./src/index.ts dotenv_config_path=./environments/.env",
     "prod": "node -r dotenv/config --optimize_for_size --max_old_space_size=460 --gc_interval=100 ./dist/src dotenv_config_path=./environments/.env.production",
     "clean:dist": "rimraf dist/**/*",
     "compile": "tsc",

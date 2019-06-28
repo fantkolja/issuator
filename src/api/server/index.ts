@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { HttpServer } from './httpServer.model';
+import { HttpServer } from './http-server.model';
 import { Server } from 'http';
 import { Controller } from '../controllers/controller.model';
 
