@@ -9,7 +9,10 @@ export class MongooseDBProvider implements DBProvider {
   }
 
   public connect(host: string): Promise<boolean> {
-    return connect(host, { useNewUrlParser: true }).then((mongoose: Mongoose) => {
+    return connect(host, {
+      useNewUrlParser: true,
+      autoIndex: false,
+    }).then((mongoose: Mongoose) => {
       return true;
     });
   }

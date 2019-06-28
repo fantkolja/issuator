@@ -25,14 +25,13 @@ export interface Issue {
   assignees: string[]; // ID
   subject: string;
   description: string;
-  dueDate: Date;
+  dueDate?: Date;
   project: string; // ID
-  priority: IssuePriority;
-  status: IssueStatus;
-  type: IssueType;
-  categories: string; // ID
+  priority?: IssuePriority;
+  status?: IssueStatus;
+  type?: IssueType;
+  categories: [string]; // ID
   milestone?: string; // ID
-  version?: string; // ID
   attachments: string[]; // URLs
   subIssues: string[]; // IDs
   comments: string[]; // @todo move from here to comments

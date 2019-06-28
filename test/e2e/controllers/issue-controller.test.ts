@@ -25,4 +25,13 @@ describe('Issue controller', () => {
     expect(Array.isArray(response.body.issues)).toBeTruthy();
     done();
   });
+
+  it('should return one or no issues on get request to the root "/issue" with an "id" query param', async (done) => {
+    const response = await request(`${'http://localhost'}:${port}`)
+      .get(`${ROUTE_NAME}/id=777`)
+      .set('Accept', 'application/json')
+      .expect(200);
+    expect(Array.isArray(response.body.issues)).toBeTruthy();
+    done();
+  });
 });
