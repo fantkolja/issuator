@@ -5,15 +5,15 @@ import { Controller } from '../controllers/controller.model';
 
 export interface ApiServerConfig {
   port: number;
-  middlewares: express.RequestHandler[];
-  controllers: Controller[];
+  middlewares?: express.RequestHandler[];
+  controllers?: Controller[];
 }
 
 export class ApiServer implements HttpServer {
   private app: express.Application;
   private port: number;
 
-  constructor({ port, middlewares, controllers }: ApiServerConfig) {
+  constructor({ port, middlewares = [], controllers = [] }: ApiServerConfig) {
     this.port = port;
     this.app = express();
     this.addMiddlewares(middlewares);

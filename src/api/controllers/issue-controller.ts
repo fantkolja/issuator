@@ -7,10 +7,11 @@ export class IssueController extends Controller {
     this.router.get('/', this.getIssue);
   }
 
-  private async getIssue(req: Request, res: Response, next: NextFunction): Promise<ApiResponseBase> {
+  public async getIssue(req: Request, res: Response, next: NextFunction): Promise<ApiResponseBase> {
     const response: ApiResponseBase = {
       issue: 'issue',
       message: 'Here is your issue :)',
+      issues: [],
     };
     res.status(200).json(response);
     return response;
