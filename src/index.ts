@@ -1,25 +1,35 @@
+import * as express from 'express';
 import { Server } from 'http';
 import { ApiServer } from './api/server';
 import { Database } from './api/db/database.model';
 import { MongooseDBProvider } from './api/db/mongoose-db-provider';
-
-// import { TimetableController } from './api/controllers/TimetableController';
+import { setHeadersMiddleware } from './api/middlewares/access-control-headers';
+import { IssueController } from './api/controllers/IssueController';
 
 async function connectDB(host: string) {
   const db = new Database(new MongooseDBProvider());
+  // tslint:disable-next-line:no-console
   db.on('error', err => console.error('DB connection error:', err));
+  // tslint:disable-next-line:no-console
   db.once('open', () => console.log('DB is connected'));
   await db.connect(host);
   return db;
 }
 
 async function launchAPIServer(port: number = 5000): Promise<Server> {
-  const server: ApiServer = new ApiServer(port);
+  const server: ApiServer = new ApiServer({
+    port,
+    middlewares: [
+      express.json(),
+      setHeadersMiddleware,
+    ],
+    controllers: [
+      new IssueController('/issue'),
+    ],
+  });
 
 // app.use(logger('dev'));
 // TODO: INTERCEPT all /api calls
-// server.addControllers([TimetableController]);
-  server.addControllers([]);
   server.get('/', (req, res) => {
     res.status(200).json({
       version: '0.0.1',
@@ -66,6 +76,7 @@ if (process.env.DB_HOST && process.env.PORT) {
     port: process.env.PORT,
   });
 } else {
+  // tslint:disable-next-line:no-console
   console.error('process.env is not properly set. Shutting down...');
   process.exit(1);
 }

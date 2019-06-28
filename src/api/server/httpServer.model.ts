@@ -1,9 +1,10 @@
-import { RequestHandler, Router } from 'express';
+import { RequestHandler } from 'express';
 import { Server } from 'http';
+import { Controller } from '../controllers/controller.model';
 
 export interface HttpServer {
   get(url: string, requestHandler: RequestHandler): void;
-  addRouter(url: string, router: Router): void;
-  addMiddleware(middleware: RequestHandler): void;
+  addMiddlewares(middlewares: RequestHandler[]): void;
+  addControllers(controllers: Controller[]): void;
   start(): Promise<Server>;
 }
