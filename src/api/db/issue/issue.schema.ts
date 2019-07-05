@@ -4,7 +4,7 @@ import { IssuePriority, IssueStatus } from '../../../../common/models/issue';
 
 export const issueSchema = new Schema({
   author: { type: String, required: true }, // Schema.Types.ObjectId
-  assignees: { type: [String], required: true },
+  assignees: { type: [String], required: true }, // { type: Schema.Types.ObjectId, ref: 'User' }
   subject: {
     type: String,
     required: true,
@@ -24,5 +24,5 @@ export const issueSchema = new Schema({
   milestone: { type: [String] },
   attachments: { type: [String] },
   subIssues: { type: [String] },
-  // comments: { type: [String] },
+  // comments: { type: [String] }, Subdocument???
 });
