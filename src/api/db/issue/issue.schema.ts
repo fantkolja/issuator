@@ -3,7 +3,7 @@ import { ISSUE_DESCRIPTION_MAX_LENGTH, ISSUE_SUBJECT_MAX_LENGTH } from '../../..
 import { IssuePriority, IssueStatus } from '../../../../common/models/issue';
 
 const issueSchema = new Schema({
-  author: { type: { type: Schema.Types.ObjectId, ref: 'User' }, required: true }, // Schema.Types.ObjectId
+  author: { type: Schema.Types.ObjectId, ref: 'User', required: true }, // Schema.Types.ObjectId
   assignees: { type: [{ type: Schema.Types.ObjectId, ref: 'User' }], required: true }, // { type: Schema.Types.ObjectId, ref: 'User' }
   subject: {
     type: String,

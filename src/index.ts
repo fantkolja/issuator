@@ -5,6 +5,7 @@ import { Database } from './api/db/database.model';
 import { MongooseDBProvider } from './api/db/mongoose-db-provider';
 import { setHeadersMiddleware } from './api/middlewares/access-control-headers';
 import { IssueController } from './api/controllers/issue-controller';
+import { UserController } from './api/controllers/user-controller';
 
 async function connectDB(host: string) {
   const db = new Database(new MongooseDBProvider());
@@ -25,6 +26,7 @@ async function launchAPIServer(port: number = 5000): Promise<Server> {
     ],
     controllers: [
       new IssueController('/issue'),
+      new UserController('/user'),
     ],
   });
 
