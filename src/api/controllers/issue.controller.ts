@@ -8,6 +8,7 @@ export class IssueController extends Controller {
     this.router.get('/:id?', this.getIssue);
     this.router.post('/', this.postIssue);
     this.router.patch('/:id', this.updateIssue);
+    this.router.delete('/:id', this.deleteIssue);
   }
 
   private async getIssue(req: Request, res: Response): Promise<void> {
@@ -38,6 +39,7 @@ export class IssueController extends Controller {
   public async updateIssue(req: Request, res: Response): Promise<void> {
     const issueId = req.params.id;
     // @todo: handle validation
+    // @todo parse update object
     const issue = issueService.updateIssue(issueId, {});
     if (!issue) {
       res.status(404).json({
@@ -47,6 +49,21 @@ export class IssueController extends Controller {
       res.status(200).json({
         issue,
         message: 'Issue successfully updated!:)',
+      });
+    }
+  }
+
+  public async deleteIssue(req: Request, res: Response): Promise<void> {
+    const issueId = req.params.id;
+    const issue = issueService.deleteIssue(issueId);
+    if (!issue) {
+      res.status(404).json({
+        error: `Couldn't find issue with ID ${issueId}`,
+      });
+    } else {
+      res.status(200).json({
+        issue,
+        message: 'Issue successfully deleted!:)',
       });
     }
   }

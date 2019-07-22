@@ -41,6 +41,12 @@ class IssueService {
       .findByIdAndUpdate(id, update, { runValidators: true })
       .exec();
   }
+
+  public deleteIssue(id: string): Promise<Issue | null> {
+    return IssueModel
+      .findByIdAndDelete(id)
+      .exec();
+  }
 }
 
 const issueService = new IssueService();
