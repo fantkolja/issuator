@@ -1,7 +1,7 @@
 import * as request from 'supertest';
 import { Server } from 'http';
 import { ApiServer } from '../../../src/api/server';
-import { IssueController } from '../../../src/api/controllers/issue-controller';
+import { IssueController } from '../../../src/api/controllers/issue.controller';
 
 const ROUTE_NAME = '/issue';
 
