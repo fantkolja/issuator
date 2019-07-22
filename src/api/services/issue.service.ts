@@ -38,7 +38,7 @@ class IssueService {
 
   public updateIssue(id: string, update: object): Promise<Issue | null> {
     return IssueModel
-      .findByIdAndUpdate(id, update)
+      .findByIdAndUpdate(id, update, { runValidators: true })
       .exec();
   }
 }

@@ -28,6 +28,7 @@ export class IssueController extends Controller {
 
   private async postIssue(req: Request, res: Response): Promise<void> {
     const issue = await issueService.createIssue();
+    // @todo check validation errors
     res.status(200).json({
       issue,
       message: 'Issue successfully saved!:)',
@@ -36,6 +37,7 @@ export class IssueController extends Controller {
 
   public async updateIssue(req: Request, res: Response): Promise<void> {
     const issueId = req.params.id;
+    // @todo: handle validation
     const issue = issueService.updateIssue(issueId, {});
     if (!issue) {
       res.status(404).json({
