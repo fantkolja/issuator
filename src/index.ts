@@ -25,8 +25,8 @@ async function launchAPIServer(port: number = 5000): Promise<Server> {
       setHeadersMiddleware,
     ],
     controllers: [
-      new IssueController('/issue'),
-      new UserController('/user'),
+      new IssueController('/issues'),
+      new UserController('/users'),
     ],
   });
 
