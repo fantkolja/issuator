@@ -8,10 +8,15 @@ export class MongooseDBProvider implements DBProvider {
     this.connection = connection;
   }
 
-  public connect(host: string): Promise<boolean> {
-    return connect(host, { useNewUrlParser: true }).then((mongoose: Mongoose) => {
-      return true;
-    });
+  public connect(host: string): Promise<void> {
+    return connect(host, {
+      useNewUrlParser: true,
+      autoIndex: false,
+    }).then((mongoose: Mongoose) => {});
+  }
+
+  public close(): Promise<void> {
+    return this.connection.close();
   }
 
   public on(eventName: string, cb: (...args: any) => void): void {
@@ -20,5 +25,9 @@ export class MongooseDBProvider implements DBProvider {
 
   public once(eventName: string, cb: (...args: any) => void): void {
     this.connection.once(eventName, cb);
+  }
+
+  public off(eventName: string, cb: (...args: any) => void): void {
+    this.connection.off(eventName, cb);
   }
 }

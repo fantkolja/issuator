@@ -1,25 +1,19 @@
 import * as request from 'supertest';
-
 import { ApiServer } from '../../../src/api/server';
 import { Server } from 'http';
 
 describe('API Server', () => {
-  let port: number;
+  const port = Number(process.env.PORT);
   let server: Server;
 
   beforeAll(async (done) => {
-    // TODO: load with dotenv
-    // port = Number(process.env.TEST_PORT);
-    port = Number(5001);
-    const api = new ApiServer(port);
-    api.addControllers([]);
+    const api = new ApiServer({ port });
+    server = await api.start();
     api.get('/', (req, res) => {
       res.status(200).json({
         version: '0.0.1',
       });
     });
-    server = await api.start();
-    console.log('beforeAll');
     done();
   });
 

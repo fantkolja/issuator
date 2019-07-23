@@ -10,8 +10,12 @@ export class Database {
   constructor(private dbProvider: DBProvider) {
   }
 
-  connect(host: string): Promise<boolean> {
+  connect(host: string): Promise<void> {
     return this.dbProvider.connect(host);
+  }
+
+  close(): Promise<void> {
+    return this.dbProvider.close();
   }
 
   public on(eventName: string, cb: (...args: any) => void): void {
@@ -20,5 +24,9 @@ export class Database {
 
   public once(eventName: string, cb: (...args: any) => void): void {
     this.dbProvider.once(eventName, cb);
+  }
+
+  public off(eventName: string, cb: (...args: any) => void): void {
+    this.dbProvider.off(eventName, cb);
   }
 }

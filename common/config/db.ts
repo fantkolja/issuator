@@ -1,0 +1,3 @@
+export const ISSUE_SUBJECT_MAX_LENGTH = 72;
+export const ISSUE_DESCRIPTION_MAX_LENGTH = 10240;
+export const FETCH_QUERY_LIMIT = 100;
