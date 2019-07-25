@@ -10,12 +10,15 @@ export interface ApiServerConfig {
 }
 
 export class ApiServer implements HttpServer {
-  private app: express.Application;
+  private coreApp: express.Application;
+  private app: express.Router;
   private port: number;
 
   constructor({ port, middlewares = [], controllers = [] }: ApiServerConfig) {
     this.port = port;
-    this.app = express();
+    this.app = express.Router();
+    this.coreApp = express();
+    this.coreApp.use('/api', this.app);
     this.addMiddlewares(middlewares);
     this.addControllers(controllers);
   }
@@ -42,7 +45,7 @@ export class ApiServer implements HttpServer {
 
   public start(): Promise<Server> {
     return new Promise((res) => {
-      const server: Server = this.app.listen(this.port, () => {
+      const server: Server = this.coreApp.listen(this.port, () => {
         // tslint:disable-next-line:no-console
         console.log(`API server is listening on ${this.port} port`);
         res(server);
